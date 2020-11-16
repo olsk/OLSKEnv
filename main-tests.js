@@ -10,6 +10,26 @@ describe('OLSKGuardSampleFilename', function test_OLSKGuardSampleFilename() {
 
 });
 
+describe('OLSKGuardKeys', function test_OLSKGuardKeys() {
+
+	it('throws if not string', function () {
+		throws(function () {
+			mod.OLSKGuardKeys(null);
+		}, /OLSKErrorInputNotValid/);
+	});
+
+	it('throws if not real', function () {
+		throws(function () {
+			mod.OLSKGuardKeys(Math.random().toString());
+		}, /OLSKErrorInputNotRealFile/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mod.OLSKGuardKeys(require('path').join(__dirname, mod.OLSKGuardSampleFilename())), ['ALFA']);
+	});
+
+});
+
 describe('OLSKGuardThrow', function test_OLSKGuardThrow() {
 
 	it('throws if param1 not object', function() {

@@ -4,6 +4,18 @@ const mod = {
 		return '.env-sample';
 	},
 
+	OLSKGuardKeys (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('OLSKErrorInputNotValid');
+		}
+
+		if (!require('fs').existsSync(inputData)) {
+			throw new Error('OLSKErrorInputNotRealFile');
+		}
+
+		return Object.keys(require('dotenv').parse(require('fs').readFileSync(inputData, 'utf8')));
+	},
+
 	OLSKGuardThrow (param1, param2) {
 		if (typeof param1 !== 'object' || param1 === null) {
 			throw new Error('OLSKErrorInputNotValid');

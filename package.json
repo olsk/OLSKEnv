@@ -1,4 +1,7 @@
 {
   "name": "OLSKGuard",
-  "main": "main.js"
+  "main": "main.js",
+  "dependencies": {
+    "dotenv": "latest"
+  }
 }
