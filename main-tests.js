@@ -2,6 +2,14 @@ const { throws, deepEqual } = require('assert');
 
 const mod = require('./main.js');
 
+describe('OLSKGuardSampleFilename', function test_OLSKGuardSampleFilename() {
+
+	it('returns string', function() {
+		deepEqual(mod.OLSKGuardSampleFilename(), '.env-sample');
+	});
+
+});
+
 describe('OLSKGuardThrow', function test_OLSKGuardThrow() {
 
 	it('throws if param1 not object', function() {

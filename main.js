@@ -1,5 +1,9 @@
 const mod = {
 
+	OLSKGuardSampleFilename () {
+		return '.env-sample';
+	},
+
 	OLSKGuardThrow (param1, param2) {
 		if (typeof param1 !== 'object' || param1 === null) {
 			throw new Error('OLSKErrorInputNotValid');
