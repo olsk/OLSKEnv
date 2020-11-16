@@ -16,7 +16,7 @@ const mod = {
 		return Object.keys(require('dotenv').parse(require('fs').readFileSync(inputData, 'utf8')));
 	},
 
-	OLSKEnvGuard (param1, param2) {
+	_OLSKEnvGuard (param1, param2) {
 		if (typeof param1 !== 'object' || param1 === null) {
 			throw new Error('OLSKErrorInputNotValid');
 		}

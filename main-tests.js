@@ -30,49 +30,49 @@ describe('OLSKEnvKeys', function test_OLSKEnvKeys() {
 
 });
 
-describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
+describe('_OLSKEnvGuard', function test__OLSKEnvGuard() {
 
 	it('throws if param1 not object', function() {
 		throws(function() {
-			mod.OLSKEnvGuard(null, [Math.random().toString()]);
+			mod._OLSKEnvGuard(null, [Math.random().toString()]);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 not array', function() {
 		throws(function() {
-			mod.OLSKEnvGuard({}, null);
+			mod._OLSKEnvGuard({}, null);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 not filled', function() {
 		throws(function() {
-			mod.OLSKEnvGuard({}, []);
+			mod._OLSKEnvGuard({}, []);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 element not string', function() {
 		throws(function() {
-			mod.OLSKEnvGuard({}, [null]);
+			mod._OLSKEnvGuard({}, [null]);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 element not filled', function() {
 		throws(function() {
-			mod.OLSKEnvGuard({}, [' ']);
+			mod._OLSKEnvGuard({}, [' ']);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 elements not keys of param1', function() {
 		const item = Date.now().toString();
 		throws(function() {
-			mod.OLSKEnvGuard({}, [item]);
+			mod._OLSKEnvGuard({}, [item]);
 		}, new RegExp(`${ item } not defined`));
 	});
 
 	it('throws if param1[param2 element] not filled', function() {
 		const item = Date.now().toString();
 		throws(function() {
-			mod.OLSKEnvGuard({
+			mod._OLSKEnvGuard({
 				[item]: ' ',
 			}, [item]);
 		}, new RegExp(`${ item } blank`));
@@ -80,7 +80,7 @@ describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
 
 	it('returns undefined', function() {
 		const item = Date.now().toString();
-		deepEqual(mod.OLSKEnvGuard({
+		deepEqual(mod._OLSKEnvGuard({
 			[item]: Math.random().toString(),
 		}, [item]), undefined);
 	});
