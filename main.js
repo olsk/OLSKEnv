@@ -54,6 +54,10 @@ const mod = {
 			path: require('path').join(process.cwd(), '.env.crypto'),
 		});
 
+		if (!require('fs').existsSync(mod.OLSKEnvSampleFilename())) {
+			return;
+		}
+
 		return this._OLSKEnvGuard(process.env, mod.OLSKEnvKeys(mod.OLSKEnvSampleFilename()))
 	},
 
