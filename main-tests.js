@@ -25,7 +25,7 @@ describe('OLSKEnvKeys', function test_OLSKEnvKeys() {
 	});
 
 	it('returns array', function() {
-		deepEqual(mod.OLSKEnvKeys(require('path').join(__dirname, mod.OLSKEnvSampleFilename())), ['ALFA']);
+		deepEqual(mod.OLSKEnvKeys(require('path').join(process.cwd(), mod.OLSKEnvSampleFilename())), ['ALFA']);
 	});
 
 });
@@ -98,7 +98,7 @@ describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
 	it('sets .env variables', function() {
 		const item = Date.now().toString();
 
-		require('fs').writeFileSync(require('path').join(__dirname, '.env'), 'ALFA=' + item);
+		require('fs').writeFileSync(require('path').join(process.cwd(), '.env'), 'ALFA=' + item);
 
 		mod.OLSKEnvGuard();
 
@@ -108,8 +108,8 @@ describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
 	it('sets .env.crypto variables', function() {
 		const item = Date.now().toString();
 
-		require('fs').writeFileSync(require('path').join(__dirname, '.env'), 'BRAVO=' + item);
-		require('fs').writeFileSync(require('path').join(__dirname, '.env.crypto'), 'ALFA=' + item);
+		require('fs').writeFileSync(require('path').join(process.cwd(), '.env'), 'BRAVO=' + item);
+		require('fs').writeFileSync(require('path').join(process.cwd(), '.env.crypto'), 'ALFA=' + item);
 
 		mod.OLSKEnvGuard();
 
