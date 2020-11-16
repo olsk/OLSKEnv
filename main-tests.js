@@ -2,77 +2,77 @@ const { throws, deepEqual } = require('assert');
 
 const mod = require('./main.js');
 
-describe('OLSKGuardSampleFilename', function test_OLSKGuardSampleFilename() {
+describe('OLSKEnvSampleFilename', function test_OLSKEnvSampleFilename() {
 
 	it('returns string', function() {
-		deepEqual(mod.OLSKGuardSampleFilename(), '.env-sample');
+		deepEqual(mod.OLSKEnvSampleFilename(), '.env-sample');
 	});
 
 });
 
-describe('OLSKGuardKeys', function test_OLSKGuardKeys() {
+describe('OLSKEnvKeys', function test_OLSKEnvKeys() {
 
 	it('throws if not string', function () {
 		throws(function () {
-			mod.OLSKGuardKeys(null);
+			mod.OLSKEnvKeys(null);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if not real', function () {
 		throws(function () {
-			mod.OLSKGuardKeys(Math.random().toString());
+			mod.OLSKEnvKeys(Math.random().toString());
 		}, /OLSKErrorInputNotRealFile/);
 	});
 
 	it('returns array', function() {
-		deepEqual(mod.OLSKGuardKeys(require('path').join(__dirname, mod.OLSKGuardSampleFilename())), ['ALFA']);
+		deepEqual(mod.OLSKEnvKeys(require('path').join(__dirname, mod.OLSKEnvSampleFilename())), ['ALFA']);
 	});
 
 });
 
-describe('OLSKGuardThrow', function test_OLSKGuardThrow() {
+describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
 
 	it('throws if param1 not object', function() {
 		throws(function() {
-			mod.OLSKGuardThrow(null, [Math.random().toString()]);
+			mod.OLSKEnvGuard(null, [Math.random().toString()]);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 not array', function() {
 		throws(function() {
-			mod.OLSKGuardThrow({}, null);
+			mod.OLSKEnvGuard({}, null);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 not filled', function() {
 		throws(function() {
-			mod.OLSKGuardThrow({}, []);
+			mod.OLSKEnvGuard({}, []);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 element not string', function() {
 		throws(function() {
-			mod.OLSKGuardThrow({}, [null]);
+			mod.OLSKEnvGuard({}, [null]);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 element not filled', function() {
 		throws(function() {
-			mod.OLSKGuardThrow({}, [' ']);
+			mod.OLSKEnvGuard({}, [' ']);
 		}, /OLSKErrorInputNotValid/);
 	});
 
 	it('throws if param2 elements not keys of param1', function() {
 		const item = Date.now().toString();
 		throws(function() {
-			mod.OLSKGuardThrow({}, [item]);
+			mod.OLSKEnvGuard({}, [item]);
 		}, new RegExp(`${ item } not defined`));
 	});
 
 	it('throws if param1[param2 element] not filled', function() {
 		const item = Date.now().toString();
 		throws(function() {
-			mod.OLSKGuardThrow({
+			mod.OLSKEnvGuard({
 				[item]: ' ',
 			}, [item]);
 		}, new RegExp(`${ item } blank`));
@@ -80,7 +80,7 @@ describe('OLSKGuardThrow', function test_OLSKGuardThrow() {
 
 	it('returns undefined', function() {
 		const item = Date.now().toString();
-		deepEqual(mod.OLSKGuardThrow({
+		deepEqual(mod.OLSKEnvGuard({
 			[item]: Math.random().toString(),
 		}, [item]), undefined);
 	});

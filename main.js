@@ -1,10 +1,10 @@
 const mod = {
 
-	OLSKGuardSampleFilename () {
+	OLSKEnvSampleFilename () {
 		return '.env-sample';
 	},
 
-	OLSKGuardKeys (inputData) {
+	OLSKEnvKeys (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('OLSKErrorInputNotValid');
 		}
@@ -16,7 +16,7 @@ const mod = {
 		return Object.keys(require('dotenv').parse(require('fs').readFileSync(inputData, 'utf8')));
 	},
 
-	OLSKGuardThrow (param1, param2) {
+	OLSKEnvGuard (param1, param2) {
 		if (typeof param1 !== 'object' || param1 === null) {
 			throw new Error('OLSKErrorInputNotValid');
 		}

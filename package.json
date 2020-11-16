@@ -1,5 +1,5 @@
 {
-  "name": "OLSKGuard",
+  "name": "OLSKEnv",
   "main": "main.js",
   "dependencies": {
     "dotenv": "latest"
