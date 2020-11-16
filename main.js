@@ -48,6 +48,15 @@ const mod = {
 		});
 	},
 
+	OLSKEnvGuard () {
+		require('dotenv').config();
+		require('dotenv').config({
+			path: require('path').join(__dirname, '.env.crypto'),
+		});
+
+		return this._OLSKEnvGuard(process.env, mod.OLSKEnvKeys(mod.OLSKEnvSampleFilename()))
+	},
+
 };
 
 Object.assign(exports, mod);

@@ -86,3 +86,42 @@ describe('_OLSKEnvGuard', function test__OLSKEnvGuard() {
 	});
 
 });
+
+describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
+
+	beforeEach(function () {
+		delete process.env.ALFA;
+
+		deepEqual(process.env.ALFA, undefined);
+	});
+
+	it('sets .env variables', function() {
+		const item = Date.now().toString();
+
+		require('fs').writeFileSync(require('path').join(__dirname, '.env'), 'ALFA=' + item);
+
+		mod.OLSKEnvGuard();
+
+		deepEqual(process.env.ALFA, item);
+	});
+
+	it('sets .env.crypto variables', function() {
+		const item = Date.now().toString();
+
+		require('fs').writeFileSync(require('path').join(__dirname, '.env'), 'BRAVO=' + item);
+		require('fs').writeFileSync(require('path').join(__dirname, '.env.crypto'), 'ALFA=' + item);
+
+		mod.OLSKEnvGuard();
+
+		deepEqual(process.env.ALFA, item);
+	});
+
+	it('calls _OLSKEnvGuard', function() {
+		deepEqual(Object.assign(Object.assign({}, mod), {
+			_OLSKEnvGuard: (function () {
+				return Array.from(arguments);
+			}),
+		}).OLSKEnvGuard(), [process.env, mod.OLSKEnvKeys(mod.OLSKEnvSampleFilename())]);
+	});
+
+});
