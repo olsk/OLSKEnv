@@ -66,7 +66,7 @@ describe('_OLSKEnvGuard', function test__OLSKEnvGuard() {
 		const item = Date.now().toString();
 		throws(function() {
 			mod._OLSKEnvGuard({}, [item]);
-		}, new RegExp(`${ item } not defined`));
+		}, new RegExp(`${ item } not defined. Please update the .env file`));
 	});
 
 	it('throws if param1[param2 element] not filled', function() {
@@ -75,7 +75,7 @@ describe('_OLSKEnvGuard', function test__OLSKEnvGuard() {
 			mod._OLSKEnvGuard({
 				[item]: ' ',
 			}, [item]);
-		}, new RegExp(`${ item } blank`));
+		}, new RegExp(`${ item } blank. Please update the .env file`));
 	});
 
 	it('returns undefined', function() {

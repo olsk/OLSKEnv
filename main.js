@@ -39,11 +39,11 @@ const mod = {
 			}
 
 			if (!param1[e]) {
-				throw new Error(`${ e} not defined`);
+				throw new Error(`${ e} not defined. Please update the .env file`);
 			}
 
 			if (!param1[e].trim()) {
-				throw new Error(`${ e} blank`);
+				throw new Error(`${ e} blank. Please update the .env file`);
 			}
 		});
 	},
