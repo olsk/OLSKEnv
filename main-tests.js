@@ -105,11 +105,11 @@ describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
 		deepEqual(process.env.ALFA, item);
 	});
 
-	it('sets .env.crypto variables', function() {
+	it('sets .env-crypto variables', function() {
 		const item = Date.now().toString();
 
 		require('fs').writeFileSync(require('path').join(process.cwd(), '.env'), 'BRAVO=' + item);
-		require('fs').writeFileSync(require('path').join(process.cwd(), '.env.crypto'), 'ALFA=' + item);
+		require('fs').writeFileSync(require('path').join(process.cwd(), '.env-crypto'), 'ALFA=' + item);
 
 		mod.OLSKEnvGuard();
 
