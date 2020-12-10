@@ -119,7 +119,7 @@ describe('OLSKEnvGuard', function test_OLSKEnvGuard() {
 	it('calls _OLSKEnvGuard', function() {
 		deepEqual(Object.assign(Object.assign({}, mod), {
 			_OLSKEnvGuard: (function () {
-				return Array.from(arguments);
+				return [...arguments];
 			}),
 		}).OLSKEnvGuard(), [process.env, mod.OLSKEnvKeys(mod.OLSKEnvSampleFilename())]);
 	});
